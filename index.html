@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>בריף פרויקט | Dragons Can Fly</title>
+<meta name="description" content="בריף קצר לפני שמתחילים: כמה דקות ויש לנו כיוון. תודה רבה!">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Dragons Can Fly">
+<meta property="og:locale" content="he_IL">
+<meta property="og:title" content="בריף פרויקט | Dragons Can Fly">
+<meta property="og:description" content="בריף קצר לפני שמתחילים: כמה דקות ויש לנו כיוון. תודה רבה!">
+<meta property="og:url" content="https://dragonscanfly.github.io/Partnership/brief.html">
+<meta property="og:image" content="https://dragonscanfly.github.io/Partnership/assets/og-survey.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://dragonscanfly.github.io/Partnership/assets/og-survey.jpg">
+<link rel="icon" href="assets/logo-dcf.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;500;600;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#c2b5ac;--dark:#231f20;--panel:#dedfdf;--btn-ink:#dddfdf;--link:#64226a;--font:"Assistant","Heebo","Arial Hebrew",Arial,sans-serif}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--dark);font:400 17px/1.6 var(--font);min-height:100vh;min-height:100svh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit;color:inherit}
+.app{position:relative;overflow:hidden;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;padding:20px 20px 32px}
+.logo{display:block;width:44px;height:44px;flex:none;position:relative;z-index:3}
+.logo img{width:44px;height:44px;display:block}
+
+/* progress */
+.prog{width:100%;max-width:560px;height:3px;background:rgba(35,31,32,.14);border-radius:3px;margin:22px 0 0;overflow:hidden;opacity:0;transition:opacity .3s}
+.prog.on{opacity:1}
+.prog i{display:block;height:100%;width:0;background:var(--dark);border-radius:3px;transition:width .45s cubic-bezier(.2,.7,.2,1)}
+
+/* screens */
+main{flex:1;width:100%;display:flex;justify-content:center;align-items:center}
+.screen{display:none;width:100%}
+.screen.on{display:block}
+.screen.leaving{display:block;animation:out .26s cubic-bezier(.4,0,1,1) forwards;pointer-events:none}
+.screen.leaving.rev{animation-name:outr}
+@keyframes fadeo{to{opacity:0}}
+.screen.leaving:has(.dragon){animation-name:fadeo}
+.screen.leaving:has(.dragon) .txt{animation:out .26s cubic-bezier(.4,0,1,1) forwards}
+@keyframes out{to{opacity:0;transform:translateY(-18px);filter:blur(4px)}}
+@keyframes outr{to{opacity:0;transform:translateY(18px);filter:blur(4px)}}
+@keyframes rise{from{opacity:0;transform:translateY(var(--dy,28px));filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+@keyframes pop{from{opacity:0;transform:translateY(14px) scale(.9)}to{opacity:1;transform:none}}
+@keyframes drift{from{opacity:0;filter:blur(12px)}to{opacity:1;filter:blur(0)}}
+.screen.on .q>*,.screen.on .txt>*{animation:rise .75s cubic-bezier(.16,.84,.24,1) both;animation-delay:calc(var(--d,0)*85ms + 60ms)}
+.screen.on .q>:nth-child(1),.screen.on .txt>:nth-child(1){--d:0}
+.screen.on .q>:nth-child(2),.screen.on .txt>:nth-child(2){--d:1}
+.screen.on .q>:nth-child(3),.screen.on .txt>:nth-child(3){--d:2}
+.screen.on .q>:nth-child(4),.screen.on .txt>:nth-child(4){--d:3}
+.screen.on .q>:nth-child(5),.screen.on .txt>:nth-child(5){--d:4}
+.screen.on .q>:nth-child(6),.screen.on .txt>:nth-child(6){--d:5}
+.screen.on.back .q>*,.screen.on.back .txt>*{--dy:-22px}
+.screen.on h2{animation-duration:.9s}
+.screen.on .chip,.screen.on .rate{animation:pop .55s cubic-bezier(.2,.9,.3,1.2) both;animation-delay:calc(var(--i,0)*45ms + 320ms)}
+.screen.on .opt{animation:rise .6s cubic-bezier(.16,.84,.24,1) both;animation-delay:calc(var(--i,0)*80ms + 320ms)}
+.screen.on .dragon{animation:drift 1.3s cubic-bezier(.16,.84,.24,1) both;animation-delay:.1s}
+.logo img{transition:width .5s cubic-bezier(.2,.8,.2,1),height .5s cubic-bezier(.2,.8,.2,1)}
+body.intro .logo img{width:64px;height:64px}
+body.intro .logo{width:64px;height:64px}
+.logo{transition:width .5s,height .5s}
+/* intro / thanks */
+.hero{width:100%;max-width:none;margin:0;padding-right:max(20px,21vw);display:flex;justify-content:flex-start;align-items:center}
+.hero .txt{position:relative;z-index:2;max-width:400px;text-align:right}
+.dragon{position:absolute;z-index:0;--dh:min(118vh,1150px);height:var(--dh);aspect-ratio:1080/1086;left:-8vw;top:50%;margin-top:calc(var(--dh)*-.5);pointer-events:none;
+ -webkit-mask-image:linear-gradient(90deg,#000 62%,transparent 100%);mask-image:linear-gradient(90deg,#000 62%,transparent 100%)}
+.dragon video::-webkit-media-controls,.dragon video::-webkit-media-controls-start-playback-button,.dragon video::-webkit-media-controls-overlay-play-button,.dragon video::-webkit-media-controls-panel{display:none!important;-webkit-appearance:none;opacity:0}
+.dragon video{display:block;width:100%;height:100%;object-fit:cover;pointer-events:none}
+h1{font-size:clamp(44px,5.6vw,76px);font-weight:700;line-height:1.05;margin-bottom:18px}
+h1.hello{font-family:'Poppins','Assistant',sans-serif;font-weight:700;text-align:right;letter-spacing:-.02em;line-height:1.02;font-size:clamp(48px,4vw,80px)}
+.txt p{font-size:clamp(18px,1.55vw,22px);font-weight:600;line-height:1.6;margin-bottom:14px}
+.txt p.sm{font-size:16px}
+.txt .btn{margin-top:14px}
+
+/* question */
+.q{max-width:560px;margin:0 auto}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:.02em;color:rgba(35,31,32,.62);margin-bottom:10px}
+h2{font-size:clamp(26px,3.6vw,36px);font-weight:700;line-height:1.2;margin-bottom:8px}
+.help{font-size:16px;color:rgba(35,31,32,.72);margin-bottom:18px}
+.req{color:var(--link);font-weight:600}
+.field{width:100%;background:#D9D9D9;border:1.5px solid transparent;border-radius:14px;padding:14px 16px;font-size:18px;line-height:1.5;outline:0;transition:border-color .2s,background .2s}
+.field:focus{background:#D9D9D9;border-color:var(--dark)}
+.field::placeholder{color:rgba(35,31,32,.55)}
+.filebox{display:flex;align-items:center;gap:16px;background:#D9D9D9;border:1.5px dashed rgba(35,31,32,.35);border-radius:18px;padding:16px 18px;cursor:pointer;transition:border-color .2s,background .2s}
+.filebox:hover,.filebox:focus-within{border-color:var(--dark)}
+.filebox input{position:absolute;opacity:0;width:1px;height:1px;pointer-events:none}
+.filebox .thumb{width:64px;height:64px;border-radius:12px;background:rgba(255,255,255,.55) center/contain no-repeat;flex:none;display:grid;place-items:center;font-size:12px;color:rgba(35,31,32,.6)}
+.filebox .fname{font-size:16px;font-weight:600;word-break:break-all}
+.filebox .fhint{font-size:14px;color:rgba(35,31,32,.6);margin-top:2px}
+.filebox .fx{margin-inline-start:auto;border:0;background:none;font:inherit;font-size:14px;text-decoration:underline;cursor:pointer;color:var(--dark);display:none}
+.filebox.has .fx{display:block}
+textarea.field{min-height:132px;resize:vertical}
+.ltr{direction:ltr;text-align:left}
+.count{font-size:13px;color:rgba(35,31,32,.55);margin-top:6px;text-align:left}
+
+/* choices */
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip,.opt{cursor:pointer;user-select:none}
+.chip input,.opt input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-block;padding:9px 18px;border-radius:50px;background:rgba(255,255,255,.55);border:1.5px solid transparent;font-size:16px;transition:all .2s}
+.chip input:checked+span{background:var(--dark);color:var(--btn-ink)}
+.chip input:focus-visible+span,.opt input:focus-visible+span,.rate input:focus-visible+span{outline:2px solid var(--link);outline-offset:2px}
+.opts{display:grid;gap:10px}
+.opt span{display:block;padding:14px 18px;border-radius:14px;background:rgba(255,255,255,.55);border:1.5px solid transparent;transition:all .2s;line-height:1.45}
+.opt input:checked+span{background:var(--dark);color:var(--btn-ink)}
+.other{margin-top:12px;display:none}
+.other.on{display:block}
+
+/* rating */
+.rates{display:flex;gap:10px;direction:ltr;justify-content:center}
+.rate{cursor:pointer}
+.rate input{position:absolute;opacity:0;pointer-events:none}
+.rate span{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:rgba(255,255,255,.55);font-size:20px;font-weight:600;transition:all .2s}
+.rate:hover span{background:#fff}
+.rate input:checked+span{background:var(--dark);color:var(--btn-ink);transform:scale(1.08)}
+.scale{display:flex;justify-content:space-between;margin-top:10px;font-size:14px;color:rgba(35,31,32,.65)}
+
+/* nav */
+.nav{display:flex;gap:12px;margin-top:28px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--dark);color:var(--btn-ink);border:0;border-radius:50px;padding:0 30px;height:46px;min-width:128px;font-size:16px;font-weight:600;cursor:pointer;transition:background .25s,color .25s;text-decoration:none}
+.btn:hover,.btn:focus-visible{background:#fff;color:var(--dark)}
+.btn.ghost{background:transparent;color:var(--dark);box-shadow:inset 0 0 0 1.5px var(--dark)}
+.btn.ghost:hover,.btn.ghost:focus-visible{background:var(--dark);color:var(--btn-ink)}
+.btn[disabled]{opacity:.6;pointer-events:none}
+.err{color:#8a1c1c;font-size:15px;margin-top:12px;min-height:22px}
+.shake{animation:sh .35s}
+@keyframes sh{20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
+
+@media(min-width:821px){
+ .hero{padding-right:max(20px,20.4vw)}
+ .hero .txt{max-width:340px}
+ .dragon{--dh:min(113vh,1300px);top:0;margin-top:0;left:calc(42vw - var(--dh)*.4972);
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(180deg,#000 0,#000 88%,transparent);
+  mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(180deg,#000 0,#000 88%,transparent);
+  -webkit-mask-composite:source-in;mask-composite:intersect}
+ .txt p{font-size:clamp(17px,1.05vw,21px)}
+ .q{text-align:center}
+ .chips,.rates{justify-content:center}
+ .opts{text-align:center}
+ .nav{justify-content:center}
+ .nav .btn{min-width:140px}
+ .count{text-align:center}
+ .field{text-align:center}
+ textarea.field{text-align:right}
+ .field.ltr{text-align:center}
+ .scale{max-width:360px;margin-left:auto;margin-right:auto}
+}
+@media(max-width:820px){
+ .app{padding:16px 20px 28px}
+ main{align-items:center}
+ .hero{min-height:calc(100svh - 120px);padding:60px 16px 40px 9vw;align-items:center;justify-content:flex-start}
+ .hero .txt{max-width:57%;text-shadow:0 0 14px rgba(194,181,172,.95),0 0 4px rgba(194,181,172,.9)}
+ .hero .txt .btn{text-shadow:none}
+ .txt p{font-size:15px;line-height:1.5}
+ h1.hello{font-size:44px}
+ .dragon{--dw:min(170vw,104svh);left:calc(var(--dw)*-.318);right:auto;top:3svh;bottom:auto;width:var(--dw);height:calc(var(--dw)*1.0056);aspect-ratio:1080/1086;margin:0;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 6%,#000 80%,transparent 100%);mask-image:linear-gradient(180deg,transparent,#000 6%,#000 80%,transparent 100%)}
+ .dragon video{object-position:50% 50%}
+ .rate span{width:50px;height:50px}
+ .rates{gap:8px}
+ .nav .btn{flex:1}
+}
+@media(prefers-reduced-motion:reduce){*,*::before{animation:none!important;transition:none!important}}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0}
+</style>
+</head>
+<body class="intro">
+<div class="app">
+ <a class="logo" href="index.html" aria-label="Dragons Can Fly"><img src="assets/logo-dcf.png" width="44" height="44" alt="Dragons Can Fly"></a>
+ <div class="prog" id="prog" aria-hidden="true"><i id="progBar"></i></div>
+
+ <main>
+  <!-- INTRO -->
+  <section class="screen on" id="s-intro" data-step="0" aria-label="פתיחה">
+   <div class="hero">
+    <div class="txt">
+     <h1 class="hello" dir="ltr">Hello<br>Dragons</h1>
+     <p>שמחה שאנחנו מתחילים. כדי שנגיע מוכנות לפגישה, אשמח שתמלא/י בריף קצר על הפרויקט.</p>
+     <p>זה לוקח <span style="white-space:nowrap">כמה דקות</span>, רק חלק מהשאלות הן חובה, ואת השאר אפשר לדלג אם אין עדיין תשובה.</p>
+     <p>תודה רבה</p>
+     <button class="btn" type="button" data-next>הבא ←</button>
+    </div>
+    <div class="dragon"><video class="dv" muted loop playsinline preload="auto" autoplay poster="assets/dragon-survey-poster.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source src="assets/dragon-survey.mp4" type="video/mp4"><source src="assets/dragon-hero-m.mp4" type="video/mp4"></video></div>
+   </div>
+  </section>
+
+  <!-- QUESTIONS are injected by JS -->
+  <div id="qs" style="display:contents"></div>
+
+  <!-- THANKS -->
+  <section class="screen" id="s-thanks" aria-label="תודה">
+   <div class="hero">
+    <div class="txt">
+     <h1>תודה רבה</h1>
+     <p>הבריף התקבל, תודה.</p>
+     <p class="sm">אעבור עליו לפני הפגישה, ואם חסר משהו אחזור אליך.</p>
+    </div>
+    <div class="dragon"><video class="dv" muted loop playsinline preload="none" poster="assets/dragon-survey-poster.jpg" aria-hidden="true" tabindex="-1" disablepictureinpicture><source data-src="assets/dragon-survey.mp4" type="video/mp4"><source src="assets/dragon-hero-m.mp4" type="video/mp4"></video></div>
+   </div>
+  </section>
+ </main>
+</div>
+
+<script>
+/* ---------- הגדרות ---------- */
+var MAIL = 'inbaredut@gmail.com';          // התשובות מגיעות אליך למייל (דרך FormSubmit, כמו טופס יצירת הקשר)
+var SHEET_URL = '';                        // אופציונלי: כתובת Google Apps Script שמרכזת הכול בגיליון אחד (ראי survey-apps-script.gs)
+
+/* ---------- השאלות ---------- */
+var Q = [
+ {k:'שם מלא',t:'text',title:'שם מלא',req:1,ac:'name'},
+ {k:'שם החברה / המותג',t:'text',title:'שם החברה או המותג',req:1,ac:'organization'},
+ {k:'תחום פעילות',t:'chips',title:'באיזה תחום אתם פועלים?',help:'נתאים את ההצעות בהמשך לתחום. אפשר לסמן כמה אפשרויות.',
+  opts:['מדיה ותוכן','סטארטאפ והייטק','אוכל ואירוח','חברה או ארגון עסקי','חנות או איקומרס','אופנה ולייף סטייל','אירועים והפקות','אחר'],otherPh:'באיזה תחום?',req:1},
+ {k:'שירות',t:'chips',title:'איזה שירות תרצו לקבל?',help:'אפשר לסמן כמה אפשרויות.',
+  opts:['עיצוב דיגיטל','עיצוב פרינט','עיצוב מתחם','סדנאות עיצוב','ייעוץ בעיצוב','מיתוג','אחר'],otherPh:'איזה שירות עוד?',req:1},
+ {k:'מה נדרש',t:'chips',dyn:1,title:'מה בדיוק תרצו לקבל?',help:'ההצעות מותאמות לשירותים שבחרתם. אפשר לסמן כמה אפשרויות.',
+  opts:[],otherPh:'מה עוד נדרש?',req:1},
+ {k:'סוג האריזה',t:'chips',cond:function(){return packSel()},title:'איזו אריזה נעצב?',help:'כדי לדייק את הפרויקט. אפשר לסמן כמה אפשרויות.',
+  opts:['קופסה או מארז','שקית','שרוול','מדבקה או תווית','מגש אירוח','כוס או אריזת משקה','בקבוק או צנצנת','נייר עטיפה','אחר'],otherPh:'איזו אריזה?',req:1},
+ {k:'היקף האריזה',t:'radio',cond:function(){return packSel()},title:'מה היקף הפרויקט?',help:'כדי שנדע להגדיר את העבודה נכון.',
+  opts:['אריזה אחת','סדרה של כמה אריזות או מוצרים','מערכת מלאה: אריזה, מדבקות ואביזרים','עדיין לא בטוח/ה']},
+ {k:'תיאור הפרויקט',t:'area',title:'ספרו בקצרה על הפרויקט',help:'מה מתכננים, לאיזה שימוש, ומה חשוב שיקרה בסופו של דבר.',req:1,max:600},
+ {k:'קהל יעד',t:'chips',title:'מי הלקוחות או קהל היעד?',help:'אפשר לסמן כמה אפשרויות.',
+  opts:['אירועים פרטיים','אירועים עסקיים','חברות וארגונים','לקוחות פרטיים','אורחים ומשפחות','אחר'],otherPh:'מי עוד?'},
+ {k:'חומרי מותג קיימים',t:'chips',title:'אילו חומרי מותג כבר קיימים?',help:'אפשר לסמן כמה אפשרויות. אין ספר מותג? זה בסדר גמור.',
+  opts:['לוגו','פנטונים וצבעי מותג','פונטים','שפה עיצובית','אלמנטים גרפיים','ספר מותג','פריסות ומידות אריזה','תמונות מוצר','עדיין אין חומרים','אחר'],otherPh:'איזה חומר נוסף?'},
+ {k:'קבצים',t:'file',multi:1,title:'העלאת חומרים',help:'אופציונלי. לוגו, פריסות או כל קובץ שיעזור לנו. PNG, SVG, JPG, PDF, עד 5MB בסך הכול. את השאר אפשר לשלוח במייל.',opt:1},
+ {k:'מועד קבלת חומרים',t:'radio',title:'מתי נוכל לקבל את החומרים?',opts:['מעלה אותם כאן','אשלח במייל בהמשך','מחכים לקבל מהגרפיקאי או מהספק','עדיין לא בטוח/ה']},
+ {k:'השראה ולינקים',t:'url',title:'לינק לאתר, לאינסטגרם או להשראה',help:'אופציונלי. אתר המותג, דוגמאות שאהבתם או מתחרים.',opt:1},
+ {k:'אווירה',t:'chips',title:'איזו אווירה חשוב שהעיצוב ישדר?',help:'אפשר לבחור כמה אפשרויות.',
+  opts:['פרימיום ומעודן','חם ומזמין','צעיר ושובב','מינימליסטי','נקי ומקצועי','עשיר ומרשים','אחר'],otherPh:'איזו אווירה עוד?'},
+ {k:'דרישות ומגבלות',t:'area',title:'דרישות ומגבלות',help:'אופציונלי. מידות, חומרי גלם, כמויות, כשרות, דרישות הדפסה או כל דבר שחשוב לדעת מראש.',max:600,opt:1},
+ {k:'לוח זמנים',t:'radio',title:'מה לוח הזמנים?',opts:['דחוף, עד שבועיים','עד חודש','חודש עד שלושה','גמיש']}
+];
+var BOOST={
+ 'אוכל ואירוח':['תפריט','עיצוב אריזה','מגשי אירוח ועמדות הגשה','מיתוג מגשי אירוח','תוויות ומדבקות למוצר','מדבקות וסטיקרים','שקיות ושרוולים','שילוט ומיתוג חלל','מיתוג אריזה','סושיאל מדיה'],
+ 'סטארטאפ והייטק':['דוכן וביתן לתערוכה','מצגת משקיעים','אתר','דף נחיתה','זהות חזותית ולוגו','פרינט משרדי וכרטיסי ביקור'],
+ 'חברה או ארגון עסקי':['דוכן וביתן לתערוכה','מצגות','פרינט משרדי וכרטיסי ביקור','קטלוגים ועלונים','זהות חזותית ולוגו','סדנה לצוות'],
+ 'חנות או איקומרס':['עיצוב אריזה','שקיות ושרוולים','מדבקות וסטיקרים','חנות או פופ־אפ','אתר','סושיאל מדיה'],
+ 'אופנה ולייף סטייל':['עיצוב אריזה','חנות או פופ־אפ','סושיאל מדיה','שקיות ושרוולים','זהות חזותית ולוגו','סדנת מיתוג'],
+ 'מדיה ותוכן':['סושיאל מדיה','אתר','באנרים ומודעות דיגיטליות','ניוזלטר ואימייל','זהות חזותית ולוגו','מצגות','קטלוגים ועלונים'],
+ 'אירועים והפקות':['עיצוב אירוע','שילוט ומיתוג חלל','דוכן וביתן לתערוכה','כרטיסי ברכה והדפסים','שלטים ופוסטרים']
+};
+var PROD={
+ 'עיצוב דיגיטל':['אתר','דף נחיתה','סושיאל מדיה','ניוזלטר ואימייל','מצגות','מצגת משקיעים','באנרים ומודעות דיגיטליות','אפליקציה או מוצר דיגיטלי'],
+ 'עיצוב פרינט':['עיצוב אריזה','תפריט','תוויות ומדבקות למוצר','מדבקות וסטיקרים','שקיות ושרוולים','כרטיסי ברכה והדפסים','קטלוגים ועלונים','פרינט משרדי וכרטיסי ביקור','שלטים ופוסטרים'],
+ 'עיצוב מתחם':['דוכן וביתן לתערוכה','חנות או פופ־אפ','עיצוב אירוע','שילוט ומיתוג חלל','מגשי אירוח ועמדות הגשה'],
+ 'סדנאות עיצוב':['סדנה לצוות','סדנה ללקוחות או לאירוע','סדנת מיתוג','סדנה פרטית'],
+ 'ייעוץ בעיצוב':['ייעוץ מותג','ייעוץ אריזה','ייעוץ עיצוב מתחם','ליווי פרויקט קיים','חוות דעת על עיצוב קיים'],
+ 'מיתוג':['מיתוג אריזה','מיתוג מגשי אירוח','זהות חזותית ולוגו','ספר מותג','רענון מותג','שפה עיצובית']
+};
+function packSel(){var di=Q.findIndex(function(q){return q.dyn});return $$('[name=q'+di+']:checked').some(function(x){return /אריזה|מגשי אירוח|שקיות|תוויות/.test(x.value)})}
+function vis(i){return !Q[i].cond||Q[i].cond()}
+var N=Q.length, ans={}, cur=0, busy=false;
+var $=function(s,r){return (r||document).querySelector(s)}, $$=function(s,r){return [].slice.call((r||document).querySelectorAll(s))};
+var qs=$('#qs');
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function pad(n){return (n<10?'0':'')+n}
+
+/* בניית מסכי שאלות */
+Q.forEach(function(q,i){
+ var s=document.createElement('section');s.className='screen';s.id='s-'+(i+1);s.setAttribute('data-step',i+1);
+ var h='<div class="q"><div class="eyebrow">שאלה '+pad(i+1)+' מתוך '+N+(q.req?' · <span class="req">חובה</span>':'')+'</div>'+
+  '<h2>'+esc(q.title)+'</h2>'+(q.help?'<p class="help">'+esc(q.help)+'</p>':'<div style="height:10px"></div>');
+ var name='q'+i;
+ if(q.t==='text')h+='<input class="field" name="'+name+'" type="text" autocomplete="'+(q.ac||'off')+'" enterkeyhint="next" '+(q.max?'maxlength="'+q.max+'" ':'')+'placeholder="כתבי כאן…">';
+ if(q.t==='area')h+='<textarea class="field" name="'+name+'" maxlength="'+q.max+'" placeholder="כתבי כאן…"></textarea><div class="count"><span>0</span>/'+q.max+'</div>';
+ if(q.t==='url')h+='<input class="field ltr" name="'+name+'" type="url" inputmode="url" autocomplete="off" autocapitalize="off" placeholder="https://" >';
+ if(q.t==='chips'){h+='<div class="chips">'+q.opts.map(function(o,ix){return '<label class="chip" style="--i:'+ix+'"><input type="'+(q.single?'radio':'checkbox')+'" name="'+name+'" value="'+esc(o)+'"><span>'+esc(o)+'</span></label>'}).join('')+'</div>'+
+  '<div class="other"><input class="field" name="'+name+'x" type="text" placeholder="'+esc(q.otherPh||'')+'"></div>'}
+ if(q.t==='file')h+='<label class="filebox"><input type="file"'+(q.multi?' multiple':'')+' name="'+name+'" accept=".png,.jpg,.jpeg,.svg,.webp,.pdf,image/*"><span class="thumb">קבצים</span><span><div class="fname">בחירת קובץ</div><div class="fhint">לחיצה לבחירה מהמכשיר</div></span><button type="button" class="fx">הסרה</button></label>';
+ if(q.t==='rate'){h+='<div class="rates">'+[1,2,3,4,5].map(function(n){return '<label class="rate" style="--i:'+n+'"><input type="radio" name="'+name+'" value="'+n+'"><span>'+n+'</span></label>'}).join('')+'</div><div class="scale" style="direction:rtl"><span>מצוין</span><span>נמוך</span></div>'}
+ if(q.t==='radio')h+='<div class="opts">'+q.opts.map(function(o,ix){return '<label class="opt" style="--i:'+ix+'"><input type="radio" name="'+name+'" value="'+esc(o)+'"><span>'+esc(o)+'</span></label>'}).join('')+'</div>';
+ h+='<div class="err" role="alert"></div><div class="nav"><button class="btn ghost" type="button" data-back>→ חזרה</button><button class="btn" type="button" data-next>'+(i===N-1?'שליחה':'הבא ←')+'</button></div></div>';
+ s.innerHTML=h;qs.appendChild(s);
+});
+/* שדה הדגמה בתוך textarea: מוצג כ"לדוגמה" בלבד, ה־placeholder של התיבות הארוכות הוא כללי */
+
+/* שאלה דינמית: אפשרויות לפי השירותים שנבחרו */
+function buildDyn(){
+ var si=Q.findIndex(function(q){return q.k==='שירות'}),di=Q.findIndex(function(q){return q.dyn});if(di<0)return;
+ var sel=$$('[name=q'+si+']:checked').map(function(x){return x.value}),list=[];
+ sel.forEach(function(v){(PROD[v]||[]).forEach(function(p){if(list.indexOf(p)<0)list.push(p)})});
+ if(!list.length)list=Object.keys(PROD).reduce(function(a,k){PROD[k].forEach(function(p){if(a.indexOf(p)<0)a.push(p)});return a},[]);
+ var ii=Q.findIndex(function(q){return q.k==='תחום פעילות'}),inds=$$('[name=q'+ii+']:checked').map(function(x){return x.value}),boost=[];
+ inds.forEach(function(v){(BOOST[v]||[]).forEach(function(p){if(boost.indexOf(p)<0)boost.push(p)})});
+ var top=boost.filter(function(p){return list.indexOf(p)>-1});
+ list=top.concat(list.filter(function(p){return top.indexOf(p)<0}));
+ list.push('אחר');
+ var s=$('#s-'+(di+1)),box=$('.chips',s),name='q'+di,old=$$('[name='+name+']:checked',s).map(function(x){return x.value});
+ box.innerHTML=list.map(function(o,ix){return '<label class="chip" style="--i:'+ix+'"><input type="checkbox" name="'+name+'" value="'+esc(o)+'"'+(old.indexOf(o)>-1?' checked':'')+'><span>'+esc(o)+'</span></label>'}).join('');
+ $('.other',s).classList.toggle('on',old.indexOf('אחר')>-1);
+}
+
+/* ניווט */
+function screenFor(n){return n===0?$('#s-intro'):(n>N?$('#s-thanks'):$('#s-'+n))}
+var animating=false;
+function fixEyebrow(n){var tot=0,pos=0;Q.forEach(function(q,i){if(vis(i)){tot++;if(i+1<=n)pos++}});var e=$('#s-'+n+' .eyebrow'),q=Q[n-1];e.innerHTML='שאלה '+pad(pos)+' מתוך '+tot+(q.req?' · <span class="req">חובה</span>':'');var pb=$('#progBar');if(pb)pb.style.width=(pos/tot*100)+'%'}
+function show(n,back){
+ var from=$('.screen.on');
+ var go=function(){
+  $$('.screen').forEach(function(x){x.classList.remove('on','back','leaving','rev')});
+  var s=screenFor(n);if(n>=1&&n<=N&&Q[n-1].dyn)buildDyn();if(n>=1&&n<=N)fixEyebrow(n);if(back)s.classList.add('back');s.classList.add('on');cur=n;animating=false;
+  document.body.classList.toggle('intro',n===0);
+  var p=$('#prog');p.classList.toggle('on',n>=1&&n<=N);$('#progBar').style.width=(n>=1?Math.min(n,N)/N*100:0)+'%';if(n>=1&&n<=N)fixEyebrow(n);
+  window.scrollTo({top:0,behavior:'smooth'});
+  var v=$('video',s);if(v){v.muted=true;var so=v.querySelector('source[data-src]');if(so){so.src=so.dataset.src;so.removeAttribute('data-src');v.load()}var pp=v.play();if(pp&&pp.catch)pp.catch(function(){})}
+  if(n>=1&&n<=N&&!matchMedia('(max-width:820px)').matches){var f=$('.field,input',s);if(f&&f.type!=='radio'&&f.type!=='checkbox'&&f.type!=='file')setTimeout(function(){f.focus({preventScroll:true})},700)}
+ };
+ if(from&&!matchMedia('(prefers-reduced-motion:reduce)').matches){animating=true;from.classList.add('leaving');if(back)from.classList.add('rev');setTimeout(go,250)}else go();
+}
+function read(i){
+ var q=Q[i],name='q'+i,s=$('#s-'+(i+1));
+ if(q.t==='url'){var uv=$('[name='+name+']',s).value.trim();return uv&&!/^https?:\/\//i.test(uv)?'https://'+uv:uv}
+ if(q.t==='text'||q.t==='area')return $('[name='+name+']',s).value.trim();
+ if(q.t==='file'){var fi=$('[name='+name+']',s);return fi.files&&fi.files.length?[].map.call(fi.files,function(f){return f.name}).join(', '):''}
+ if(q.t==='chips'){var v=$$('[name='+name+']:checked',s).map(function(x){return x.value});
+  if(v.indexOf('אחר')>-1){var o=$('[name='+name+'x]',s).value.trim();if(o)v[v.indexOf('אחר')]='אחר: '+o}return v.join(', ')}
+ var c=$('[name='+name+']:checked',s);return c?c.value:'';
+}
+function validate(i){
+ var q=Q[i],v=read(i),s=$('#s-'+(i+1)),e=$('.err',s);e.textContent='';
+ if(q.req&&!v){e.textContent=q.t==='radio'?'צריך לבחור אפשרות כדי להמשיך.':'זו שאלת חובה, נשמח לתשובה קצרה.';shake(s);return false}
+ if(q.t==='file'&&v){var fl=[].slice.call($('[name=q'+i+']',s).files),tot=fl.reduce(function(a,f){return a+f.size},0);if(tot>5*1024*1024){e.textContent='הקבצים גדולים מ־5MB בסך הכול. אפשר לשלוח אותו במייל או להקטין אותו.';shake(s);return false}if(fl.some(function(f){return !/\.(png|jpe?g|svg|webp|pdf)$/i.test(f.name)})){e.textContent='סוגי קבצים נתמכים: PNG, SVG, JPG, WEBP או PDF.';shake(s);return false}}
+ if(q.t==='url'&&v){if(!/^https?:\/\/\S+\.\S+/i.test(v)){e.textContent='הקישור צריך להתחיל ב־https://';shake(s);return false}}
+ return true;
+}
+function shake(s){var q=$('.q',s);q.classList.remove('shake');void q.offsetWidth;q.classList.add('shake')}
+function next(){
+ if(busy||animating)return;
+ if(cur===0){show(1);return}
+ if(!validate(cur-1))return;
+ ans[cur-1]=read(cur-1);
+ if(cur===N){submit();return}
+ var t=cur+1;while(t<=N&&!vis(t-1))t++;show(t);
+}
+function back(){if(busy||animating)return;if(cur>0){var t=cur-1;while(t>=1&&!vis(t-1))t--;show(t,true)}}
+document.addEventListener('click',function(e){
+ var b=e.target.closest('[data-next]');if(b){next();return}
+ b=e.target.closest('[data-back]');if(b)back();
+});
+document.addEventListener('keydown',function(e){
+ if(e.key==='Enter'&&!e.shiftKey&&e.target.tagName!=='TEXTAREA'&&e.target.tagName!=='BUTTON'&&cur>=0&&cur<=N){e.preventDefault();next()}
+});
+$$('.filebox').forEach(function(b){var inp=$('input',b),th=$('.thumb',b),nm=$('.fname',b),ht=$('.fhint',b),x=$('.fx',b);
+ function reset(){inp.value='';b.classList.remove('has');th.style.backgroundImage='';th.textContent='קבצים';nm.textContent='בחירת קובץ';ht.textContent='לחיצה לבחירה מהמכשיר'}
+ inp.addEventListener('change',function(){var fs=[].slice.call(inp.files);if(!fs.length){reset();return}var f=fs[0],tot=fs.reduce(function(a,q){return a+q.size},0);b.classList.add('has');nm.textContent=fs.length>1?fs.length+' קבצים נבחרו':f.name;ht.textContent='\u202A'+Math.max(1,Math.round(tot/1024))+' KB\u202C';
+  if(/^image\//.test(f.type)){th.textContent='';th.style.backgroundImage='url('+URL.createObjectURL(f)+')'}else{th.style.backgroundImage='';th.textContent=fs.length>1?fs.length:'PDF'}});
+ x.addEventListener('click',function(e){e.preventDefault();e.stopPropagation();reset()})});
+$$('textarea.field').forEach(function(t){t.addEventListener('input',function(){t.parentNode.querySelector('.count span').textContent=t.value.length})});
+document.addEventListener('change',function(e){var c=e.target;if(!c.closest||!c.closest('.chip'))return;
+ var s=c.closest('.screen'),on=$$('.chip input',s).some(function(x){return x.value==='אחר'&&x.checked});$('.other',s).classList.toggle('on',on);
+});
+
+/* שליחה */
+function submit(){
+ var btn=$('#s-'+N+' [data-next]'),e=$('#s-'+N+' .err');busy=true;btn.disabled=true;btn.textContent='שולחת…';e.textContent='';
+ var data={};Q.forEach(function(q,i){data[pad(i+1)+' '+q.k]=vis(i)?(ans[i]||''):''});
+ var fd=new FormData();fd.append('_subject','בריף פרויקט – '+(ans[1]||'')+' – '+(ans[0]||'ללא שם'));fd.append('_template','table');fd.append('_captcha','false');
+ Object.keys(data).forEach(function(k){fd.append(k,data[k])});
+ var li=Q.map(function(q,i){return q.t==='file'?i:-1}).filter(function(i){return i>-1})[0];
+ if(li!==undefined){[].forEach.call($('#s-'+(li+1)+' input[type=file]').files,function(lf){fd.append('attachment',lf)});}
+ var ok=function(){busy=false;try{sessionStorage.setItem('dcf-brief-done','1')}catch(_){}show(N+1)};
+ var fail=function(msg){busy=false;btn.disabled=false;btn.textContent='שליחה';e.innerHTML=msg||'משהו השתבש בשליחה. נסו שוב בעוד רגע.'};
+ if(SHEET_URL){try{fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(Object.assign({time:new Date().toISOString()},data))})}catch(_){}}
+ fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Accept':'application/json'},body:fd})
+ .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})})
+ .then(function(x){if(x.ok&&(x.j.success===true||x.j.success==='true'))ok();else fail(x.j&&x.j.message?esc(x.j.message):null)})
+ .catch(function(){fail('אין חיבור לשרת כרגע. בדקו את החיבור לאינטרנט ונסו שוב.')});
+}
+
+/* אנימציית הדרקון: עוצרים אם המשתמש ביקש פחות תנועה */
+if(matchMedia('(prefers-reduced-motion:reduce)').matches){$$('video.dv').forEach(function(v){v.removeAttribute('autoplay');v.pause()})}
+(function(){function kick(){var v=$('.screen.on video');if(v){v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){})}}
+kick();window.addEventListener('load',kick);['touchstart','pointerdown','click','keydown'].forEach(function(e){document.addEventListener(e,kick,{once:true,passive:true})})})();
+document.addEventListener('visibilitychange',function(){var v=$('.screen.on video');if(v){document.hidden?v.pause():v.play().catch(function(){})}});
+</script>
+</body>
+</html>
