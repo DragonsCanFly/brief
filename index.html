@@ -364,14 +364,27 @@ document.addEventListener('change',function(e){var c=e.target;if(!c.closest||!c.
 function submit(){
  var btn=$('#s-'+N+' [data-next]'),e=$('#s-'+N+' .err');busy=true;btn.disabled=true;btn.textContent='שולחת…';e.textContent='';
  var data={};Q.forEach(function(q,i){data[pad(i+1)+' '+q.k]=vis(i)?(ans[i]||''):''});
- var fd=new FormData();fd.append('_subject','בריף פרויקט – '+(ans[1]||'')+' – '+(ans[0]||'ללא שם'));fd.append('_template','table');fd.append('_captcha','false');
- Object.keys(data).forEach(function(k){fd.append(k,data[k])});
- var li=Q.map(function(q,i){return q.t==='file'?i:-1}).filter(function(i){return i>-1})[0];
- if(li!==undefined){[].forEach.call($('#s-'+(li+1)+' input[type=file]').files,function(lf){fd.append('attachment',lf)});}
+ var subject='בריף פרויקט – '+(ans[1]||'')+' – '+(ans[0]||'ללא שם');
+ var files=[];$$('input[type=file]').forEach(function(fi){[].forEach.call(fi.files||[],function(x){files.push(x)})});
  var ok=function(){busy=false;try{sessionStorage.setItem('dcf-brief-done','1')}catch(_){}show(N+1)};
  var fail=function(msg){busy=false;btn.disabled=false;btn.textContent='שליחה';e.innerHTML=msg||'משהו השתבש בשליחה. נסו שוב בעוד רגע.'};
  if(SHEET_URL){try{fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(Object.assign({time:new Date().toISOString()},data))})}catch(_){}}
- fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Accept':'application/json'},body:fd})
+ if(files.length){
+  /* עם קבצים: שליחה בטופס רגיל (ל־AJAX של FormSubmit אין תמיכה אמינה בקבצים) */
+  var fr=document.createElement('iframe');fr.name='fsframe';fr.style.display='none';document.body.appendChild(fr);
+  var fm=document.createElement('form');fm.method='POST';fm.action='https://formsubmit.co/'+MAIL;fm.enctype='multipart/form-data';fm.target='fsframe';fm.style.display='none';
+  var add=function(k,v){var i=document.createElement('input');i.type='hidden';i.name=k;i.value=v;fm.appendChild(i)};
+  add('_subject',subject);add('_template','table');add('_captcha','false');add('_url',location.href);
+  Object.keys(data).forEach(function(k){add(k,data[k])});
+  /* קלט קובץ נפרד לכל קובץ: FormSubmit מתעד תמיכה בכמה שדות קובץ, ולא בבחירה מרובה בשדה אחד */
+  try{files.forEach(function(x,n){var fi=document.createElement('input');fi.type='file';fi.name='attachment'+(n+1);var dt=new DataTransfer();dt.items.add(x);fi.files=dt.files;fm.appendChild(fi)})}catch(_){fail('הדפדפן לא תומך בשליחת קבצים. אפשר להסיר את הקבצים ולשלוח אותם במייל.');return}
+  document.body.appendChild(fm);
+  var done=false,t=setTimeout(function(){if(!done){done=true;fail('השליחה לקחה יותר מדי זמן. נסו שוב בעוד רגע.')}},45000);
+  fr.addEventListener('load',function(){if(done)return;done=true;clearTimeout(t);ok()});
+  fm.submit();return;
+ }
+ var payload=Object.assign({'_subject':subject,'_template':'table','_captcha':'false'},data);
+ fetch('https://formsubmit.co/ajax/'+MAIL,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)})
  .then(function(r){return r.json().catch(function(){return {}}).then(function(j){return {ok:r.ok,j:j}})})
  .then(function(x){if(x.ok&&(x.j.success===true||x.j.success==='true'))ok();else fail(x.j&&x.j.message?esc(x.j.message):null)})
  .catch(function(){fail('אין חיבור לשרת כרגע. בדקו את החיבור לאינטרנט ונסו שוב.')});
